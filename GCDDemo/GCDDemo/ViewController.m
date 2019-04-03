@@ -59,6 +59,7 @@ typedef void(^comletionHandler)(NSString *status);
         btn.backgroundColor = [UIColor lightGrayColor];
         [btn addTarget:self action:@selector(btnClickActionWithSender:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i;
+        
     };
 }
 

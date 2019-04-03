@@ -23,10 +23,15 @@
     // GCD 基础
     ViewController *vc = [[ViewController alloc] init];
     vc.tabBarItem.title = @"基础";
+    vc.tabBarItem.selectedImage = [UIImage imageNamed:@"32pt"];
+    vc.tabBarItem.image = [UIImage imageNamed:@"32pt"];
+
     UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:vc];
 
     GCDOtherViewController *vc2 = [[GCDOtherViewController alloc] init];
-    vc2.tabBarItem.title = @"提高";
+    vc2.tabBarItem.title = @"信号量";
+    vc2.tabBarItem.selectedImage = [UIImage imageNamed:@"32pt"];
+    vc2.tabBarItem.image = [UIImage imageNamed:@"32pt"];
     UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:vc2];
 
     self.viewControllers  = @[naviVC,naviVC2];
