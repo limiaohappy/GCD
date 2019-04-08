@@ -23,7 +23,8 @@ typedef void(^comletionHandler)(NSString *status);
     
     NSArray *btnTitleArr = @[@"信号量基础",
                              @"信号量基础 信号量减少放入block中",
-                             @"实现异步多线程并发任务的同步操作"];
+                             @"实现异步多线程并发任务的同步操作",
+                             @"实现异步多线程Block任务的同步操作"];
     
     for (int i = 0; i < btnTitleArr.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -53,6 +54,10 @@ typedef void(^comletionHandler)(NSString *status);
             break;
         case 2:{
             [self semaphoreAsyncGlobalTask];
+        }
+            break;
+        case 3:{
+            [self semaphoreAsyncGlobalBlockTask];
         }
             break;
         default:
@@ -223,40 +228,39 @@ typedef void(^comletionHandler)(NSString *status);
     NSLog(@"semaphoreAsyncGlobalTask 总任务开启");
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    //任务1
+    NSLog(@"任务执行 -> 开始线程：%@",[NSThread currentThread]);      // 打印当前线程
+    __block NSInteger number = 0;
     dispatch_async(quene, ^{
-        NSLog(@"任务一开始 %@",[NSThread currentThread]);
-        [self netWorkingComletionHandler:^(NSString *status) {
-            NSLog(@"任务一 任务Block回掉完成 %@",status);
-            dispatch_semaphore_signal(semaphore);
-        }];
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"任务执行 一  -> 结束 线程：%@",[NSThread currentThread]);      // 打印当前线程
+        number = 100;
+        dispatch_semaphore_signal(semaphore);
     });
-    
-    
-    //任务2
-    dispatch_async(quene, ^{
-        NSInteger currentSemI = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        NSLog(@"任务一 currentSem = %ld",currentSemI);
-        NSLog(@"任务二开始 %@",[NSThread currentThread]);
-        [self netWorkingComletionHandler:^(NSString *status) {
-            NSLog(@"任务二 任务Block回掉完成 %@",status);
-            dispatch_semaphore_signal(semaphore);
-        }];
-    });
-    
-    //任务3
-    dispatch_async(quene, ^{
-        NSInteger currentSemII = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        NSLog(@"任务二 currentSem = %ld",currentSemII);
-        NSLog(@"任务三开始 %@",[NSThread currentThread]);
-        [self netWorkingComletionHandler:^(NSString *status) {
-            NSLog(@"任务三 任务Block回掉完成 %@",status);
-            dispatch_semaphore_signal(semaphore);
-        }];
-    });
-    NSInteger currentSemIII = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    NSLog(@"任务三 currentSem = %ld",currentSemIII);
+    NSLog(@"任务执行 二 -> 结束  线程：%@",[NSThread currentThread]);      // 打印当前线程
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"任务执行 三 -> 结束  线程：%@",[NSThread currentThread]);      // 打印当前线程
     NSLog(@"semaphoreAsyncGlobalTask 总任务关闭");
+}
+
+
+#pragma mark - 实现异步多线程并发带Block回掉任务的同步操作
+- (void)semaphoreAsyncGlobalBlockTask{
+    NSLog(@"\n\n\n\n");
+    NSLog(@"semaphoreAsyncGlobalBlockTask 总任务开启");
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    NSLog(@"任务执行 -> 开始线程：%@",[NSThread currentThread]);      // 打印当前线程
+    dispatch_async(quene, ^{
+        NSLog(@"Block任务执行 -> 开始线程：%@",[NSThread currentThread]);      // 打印当前线程
+        [self netWorkingComletionHandler:^(NSString *status) {
+            NSLog(@"Block任务执行 一  -> 结束 线程：%@",[NSThread currentThread]);      // 打印当前线程
+            dispatch_semaphore_signal(semaphore);
+        }];
+    });
+    NSLog(@"任务执行 二 -> 结束  线程：%@",[NSThread currentThread]);      // 打印当前线程
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"任务执行 三 -> 结束  线程：%@",[NSThread currentThread]);      // 打印当前线程
+    NSLog(@"semaphoreAsyncGlobalBlockTask 总任务关闭");
 }
 
 
