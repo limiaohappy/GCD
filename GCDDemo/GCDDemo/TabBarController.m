@@ -10,6 +10,7 @@
 
 #import "ViewController.h"           //-> GCD基础
 #import "GCDOtherViewController.h"   //-> GCD其他
+#import "NetWorkingViewController.h" //-> 网络请求实战
 
 @interface TabBarController ()
 
@@ -34,7 +35,15 @@
     vc2.tabBarItem.image = [UIImage imageNamed:@"32pt"];
     UINavigationController *naviVC2 = [[UINavigationController alloc] initWithRootViewController:vc2];
 
-    self.viewControllers  = @[naviVC,naviVC2];
+    
+    NetWorkingViewController *vc3 = [[NetWorkingViewController alloc] init];
+    vc3.tabBarItem.title = @"网络请求";
+    vc3.tabBarItem.selectedImage = [UIImage imageNamed:@"32pt"];
+    vc3.tabBarItem.image = [UIImage imageNamed:@"32pt"];
+    UINavigationController *naviVC3 = [[UINavigationController alloc] initWithRootViewController:vc3];
+
+    
+    self.viewControllers  = @[naviVC,naviVC2,naviVC3];
 
     
     // Do any additional setup after loading the view.

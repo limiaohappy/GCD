@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E6E4C58227EDC3C009800AA /* NetWorkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E6E4C57227EDC3C009800AA /* NetWorkingViewController.m */; };
 		9EC617652252FC4B000C92BC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EC617642252FC4B000C92BC /* Launch Screen.storyboard */; };
 		9EC6176822531198000C92BC /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC6176722531198000C92BC /* TabBarController.m */; };
 		9EC6176B225312C6000C92BC /* GCDOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC6176A225312C6000C92BC /* GCDOtherViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E6E4C56227EDC3C009800AA /* NetWorkingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkingViewController.h; sourceTree = "<group>"; };
+		9E6E4C57227EDC3C009800AA /* NetWorkingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkingViewController.m; sourceTree = "<group>"; };
 		9EC617642252FC4B000C92BC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9EC6176622531198000C92BC /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		9EC6176722531198000C92BC /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 				9EC6176722531198000C92BC /* TabBarController.m */,
 				9EC61769225312C6000C92BC /* GCDOtherViewController.h */,
 				9EC6176A225312C6000C92BC /* GCDOtherViewController.m */,
+				9E6E4C56227EDC3C009800AA /* NetWorkingViewController.h */,
+				9E6E4C57227EDC3C009800AA /* NetWorkingViewController.m */,
 			);
 			path = GCDDemo;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				9EC6176822531198000C92BC /* TabBarController.m in Sources */,
 				9EE8B0502252F45500328E20 /* main.m in Sources */,
 				9EC6176B225312C6000C92BC /* GCDOtherViewController.m in Sources */,
+				9E6E4C58227EDC3C009800AA /* NetWorkingViewController.m in Sources */,
 				9EE8B0422252F45400328E20 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
